@@ -56,16 +56,16 @@ dependencies {
       signingConfigs {
           release {
               storeFile file("sign_amlloc.jks")
-              storePassword 'xxxxxx'
-              keyAlias 'signed'
-              keyPassword 'xxxxxx'
+              storePassword 'xxxxxxx'
+              keyAlias 'yyyyyyyyy'
+              keyPassword 'xxxxxxxxx'
           }
   
           debug {
               storeFile file("sign_amlloc.jks")
-              storePassword 'xxxxx'
-              keyAlias 'signed'
-              keyPassword 'xxxxxx'
+              storePassword 'xxxxxxx'
+              keyAlias 'yyyyyyy'
+              keyPassword 'xxxxxxxxx'
           }
       }
   

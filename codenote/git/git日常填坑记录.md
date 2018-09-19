@@ -17,7 +17,7 @@ tags: [git, 填坑记录]
 - 原因：`clone/remote add`项目时使用了`http/https`
 - 解决：`clone/remote add`项目时使用了`ssh`方式，尽量不使用`http/https`方式
 
-### 二、git log
+### 二、git log (git lg)
 
 - 通过commit号的一部分模糊查找完整的commit号
 
@@ -27,17 +27,25 @@ tags: [git, 填坑记录]
 
   `git log filename`
 
+- 彩色log(git lg)
+
+  ` git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"`
+
 ### 三、git merge
 
 - 强行关闭fast-forward方式，保留分支提交历史（建议每次合并的时候都使用这个参数,因为默认会使用fast-forward模式，此时的分支提交历史不会保留）
 
   `git merge --no-ff <branch name>`
 
-### 四、git checkout
+### 四、git checkout(git co)
 
 - 切换分支
 
   `git checkout <branch name>`
+
+- 新建本地分支并将远程对应分支提出
+  `git checkout -t origin/2.0.0`
+
 
 ### 五、git add <filename>
 
@@ -45,7 +53,7 @@ tags: [git, 填坑记录]
 
   `git add <filename/document>`
 
-### 六、 git commit
+### 六、 git commit(git ci)
 
 - 提交暂存区内的所有改动，并附加说明
 
@@ -59,7 +67,7 @@ tags: [git, 填坑记录]
 
   `git commit -v`
 
-### 七、git status
+### 七、git status( git st)
 
 - 查看暂存区，工作区，以及未跟踪文件的情况
 
@@ -69,7 +77,7 @@ tags: [git, 填坑记录]
 
 - 取消暂存区某个文件
 
-  `git reset HEAD <filename>`
+  `git reset HEAD <filename>` 或 `git unstage <filename>`
 
 - 取消整个暂存区
 
@@ -118,3 +126,40 @@ tags: [git, 填坑记录]
 
 - 可以直接在这里修改global的name和email
 - 可修改git使用时用到的editor
+
+### 十二、git branch
+
+- 查看本地+远程分支
+
+  `git branch -va`
+
+### 十三、.gitignore
+
+- 过滤文件夹
+
+  `/builds/`
+
+- 过滤某种类型文件
+
+  `*.java`、`*.c`
+
+- 指定过滤某个文件
+
+  `/local.properties`
+
+- 保守模式设置哪些文件不被过滤，也就是设置跟踪哪些文件夹
+
+  `!/local.properties`
+
+  `!*.java`、`!*.c`
+
+  `!/builds/`
+### 十四、git log(git lg)
+
+
+
+### 十五、git branch(git br)
+
+- 查看分支
+
+  `git branch`
