@@ -154,12 +154,30 @@ tags: [git, 填坑记录]
   `!*.java`、`!*.c`
 
   `!/builds/`
-### 十四、git log(git lg)
 
-
-
-### 十五、git branch(git br)
+### 十四、git branch(git br)
 
 - 查看分支
 
   `git branch`
+  
+### 十五、git stash
+- 保护工作现场
+
+  `git stash`
+
+- 恢复工作现场
+
+  `git stash apply`
+
+- 恢复的同时把stash内容也删
+
+  `git stash pop`
+
+- 查看stash列表
+
+  `git stash list`
+
+- 恢复指定的stash
+
+  `git stash apply stash@{0}`
