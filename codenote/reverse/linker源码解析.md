@@ -346,8 +346,6 @@ struct soinfo {
 };
 ```
 ## 0x08  find_library_internal() 之soinfo_link_image(si) 
-这一部分参考了雪一梦师傅的分析，并作了一些补充：
-http://blog.csdn.net/feibabeibei_beibei/article/details/53004525
 在si = load_library(name)获得了so文件的info之后，就开始进行一系列操作：
 1、定位动态节；
 2、解析动态节；
@@ -577,7 +575,7 @@ if (si->has_text_relocations) {//重定位操作
         }
     }
 ```
-其中具体的意义参见雪一梦师傅的博客：
+其中具体的意义参见以下博客
 http://blog.csdn.net/feibabeibei_beibei/article/details/53004525
 ## 0xFF 收尾
 1、dlopen执行完毕后
@@ -591,7 +589,7 @@ http://blog.csdn.net/feibabeibei_beibei/article/details/53004525
 
 这里留个坑，就是未进行对全局变量gDvm的解析，师傅们多多指教哇~
 参考链接：
-雪一梦师傅的博客：
+
 http://blog.csdn.net/feibabeibei_beibei/article/details/53004525
-土豆大师傅：https://xianzhi.aliyun.com/forum/read/316.html
-从乌云转载的文章：http://blog.csdn.net/maspchen/article/details/50568693
+https://xianzhi.aliyun.com/forum/read/316.html
+http://blog.csdn.net/maspchen/article/details/50568693
