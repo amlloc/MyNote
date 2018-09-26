@@ -8,9 +8,7 @@ tags: [git, 填坑记录]
 使用git的零零碎碎
 <!--more-->
 
-### 每次将代码push到github时都需要输入用户和密码
-
-#### 环境
+### 每次将代码push到github时都需要输入用户和密码环境
 
 - 操作系统：Ubuntu 17.10
 - 备注：已配置好gitlab和github双账号 
@@ -36,7 +34,7 @@ tags: [git, 填坑记录]
 - 将本地分支push到指定远程分支 ，如远程没有该分支，则创建
   `git push origin <localbranchName>:<remotebranchName>`
 -   将本地分支push到指定远程分支，并对该远程分支进行跟踪
-  `git push --set-upstream origin <branchName>`
+    `git push --set-upstream origin <branchName>`
 
 ### git merge
 
