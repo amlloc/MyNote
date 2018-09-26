@@ -33,7 +33,10 @@ tags: [git, 填坑记录]
 
 ### git push
 
-- `git push origin <localbranchName>:<remotebranchName>`
+- 将本地分支push到指定远程分支 ，如远程没有该分支，则创建
+  `git push origin <localbranchName>:<remotebranchName>`
+-   将本地分支push到指定远程分支，并对该远程分支进行跟踪
+  `git push --set-upstream origin <branchName>`
 
 ### git merge
 
