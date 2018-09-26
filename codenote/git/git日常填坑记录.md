@@ -8,7 +8,7 @@ tags: [git, 填坑记录]
 使用git的零零碎碎
 <!--more-->
 
-### 一、每次将代码push到github时都需要输入用户和密码
+### 每次将代码push到github时都需要输入用户和密码
 
 #### 环境
 
@@ -17,7 +17,7 @@ tags: [git, 填坑记录]
 - 原因：`clone/remote add`项目时使用了`http/https`
 - 解决：`clone/remote add`项目时使用了`ssh`方式，尽量不使用`http/https`方式
 
-### 二、git log (git lg)
+### git log (git lg)
 
 - 通过commit号的一部分模糊查找完整的commit号
 
@@ -31,13 +31,17 @@ tags: [git, 填坑记录]
 
   ` git config --global alias.lg "log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit"`
 
-### 三、git merge
+### git push
+
+- `git push origin <localbranchName>:<remotebranchName>`
+
+### git merge
 
 - 强行关闭fast-forward方式，保留分支提交历史（建议每次合并的时候都使用这个参数,因为默认会使用fast-forward模式，此时的分支提交历史不会保留）
 
   `git merge --no-ff <branch name>`
 
-### 四、git checkout(git co)
+### git checkout(git co)
 
 - 切换分支
 
@@ -47,13 +51,13 @@ tags: [git, 填坑记录]
   `git checkout -t origin/2.0.0`
 
 
-### 五、git add <filename>
+### git add <filename>
 
 - 将特定文件/文件夹放置到暂存区
 
   `git add <filename/document>`
 
-### 六、 git commit(git ci)
+###  git commit(git ci)
 
 - 提交暂存区内的所有改动，并附加说明
 
@@ -67,13 +71,13 @@ tags: [git, 填坑记录]
 
   `git commit -v`
 
-### 七、git status( git st)
+### git status( git st)
 
 - 查看暂存区，工作区，以及未跟踪文件的情况
 
   `git status`
 
-### 八、git reset
+### git reset
 
 - 取消暂存区某个文件
 
@@ -83,7 +87,7 @@ tags: [git, 填坑记录]
 
   `git reset`
 
-### 九、git tag
+### git tag
 
 - 列出tag
 
@@ -103,7 +107,7 @@ tags: [git, 填坑记录]
 
   线上：`git push origin :refs/tags/v1.4.5` (这个需要一定的权限才能做到)
 
-### 十、git config
+### git config
 
 - 查看用户名和邮箱
 
@@ -122,18 +126,18 @@ tags: [git, 填坑记录]
 
   ` git config --global --unset user.email`
 
-### 十一、~/.gitconfig
+### ~/.gitconfig
 
 - 可以直接在这里修改global的name和email
 - 可修改git使用时用到的editor
 
-### 十二、git branch
+### git branch
 
 - 查看本地+远程分支
 
   `git branch -va`
 
-### 十三、.gitignore
+### .gitignore
 
 - 过滤文件夹
 
@@ -155,13 +159,16 @@ tags: [git, 填坑记录]
 
   `!/builds/`
 
-### 十四、git branch(git br)
+### git branch(git br)
 
 - 查看分支
 
   `git branch`
-  
-### 十五、git stash
+
+- 重命名分支
+
+  `git branch -m <old-branchname> <new-branchname>`
+### git stash
 - 保护工作现场
 
   `git stash`
