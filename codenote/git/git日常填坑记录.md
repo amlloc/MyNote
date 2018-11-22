@@ -51,6 +51,10 @@ tags: [git, 填坑记录]
 - 新建本地分支并将远程对应分支提出
   `git checkout -t origin/2.0.0`
 
+- 新建本地分支
+
+  `git checkout -b <branch name>`
+
 
 ### git add <filename>
 

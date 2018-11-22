@@ -3,12 +3,25 @@ title: Python基础
 date: 2018-10-10 21:16:16
 categories: codenote
 tags: Python
+typora-copy-images-to: python-learn-note
 ---
 
 Python学习的点点滴滴
 > [参考菜鸟教程](http://www.runoob.com/python/python-tutorial.html)
 
 <!--more-->
+
+# Ubuntu下Python2 与 Python3切换
+
+​        这里不详细介绍如何`python2`与`python3`共存的问题，这里简单只简单说一下，只要在`/usr/bin`目录下的`python2.7`的执行文件命名为`python`，然后保留一个`python3.6`的可执行文件，并命名为`python3`，这样就可以使得默认状态下`$python`执行`python2.7`，`python3`执行`python3.6`，反之亦然。
+
+​        我的机器上默认是`python2`，但希望有时候需要用到`python3`，尤其是当有些开源库需要用到`python3`的时候，此时其要求`$python`即执行的是`python3`。此时可在命令行下执行以下命令：
+
+`alias python=python3`
+
+或将其写入到`~/.bashrc`文件中即可，效果如下:
+
+![1542864845657](python-learn-note/1542864845657.png)
 
 # Python 变量类型
 
@@ -560,7 +573,331 @@ print "函数外是全局变量 : ", total
 
 以上实例输出结果：
 
-```
+```python
 函数内是局部变量 :  30
 函数外是全局变量 :  0
+```
+
+# 以下为Python3内容
+
+#  Python3迭代器与生成器
+
+## 迭代器
+
+- 基本方法
+
+  `iter()`与`next()`
+
+- 字符串，列表，元组对象创建迭代器
+
+  ```python
+  list=[1,2,3,4]
+  it = iter(list)
+  print(next(it))
+  1
+  print(nexit(it))
+  2
+  ```
+
+- 遍历方法
+
+  ```python
+  #!/usr/bin/python3
+  list=[1,2,3,4]
+  it = iter(list)
+  it=iter(list)
+  for x in it:
+      print(x, end=" ")
+  ```
+
+  输出结果：
+
+  ```
+  1 2 3 4
+  ```
+  ```python
+  #!/usr/bin/python3
+  import sys
+  list=[1,2,3,4]
+  it=iter(list)
+  
+  while True:
+      try:
+          print (next(it))
+      except StopIteration:
+          sys.exit()
+  ```
+  输出结果如下：
+
+  ```
+  1
+  2
+  3
+  4
+  ```
+
+## 创建迭代器
+
+类中实现迭代器的两个方法
+
+`__iter__()与__next__()`
+
+实例：
+
+```python
+class Numbers:
+  def __iter__(self):
+    self.number = 1
+    return self
+    
+  def __next__(self):
+    x = self.number
+    self.number += 1
+    return x
+    
+numbers = Numbers()
+iter = iter(numbers)
+
+print(next(iter))
+print(next(iter))
+print(next(iter))
+print(next(iter))
+```
+
+输出结果：
+
+```
+1
+2
+3
+4
+```
+
+## 生成器
+
+使用了`yield`的函数被称为生成器(generator)
+
+跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。
+
+在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值, 并在下一次执行 next() 方法时从当前位置继续运行。
+
+调用一个生成器函数，返回的是一个迭代器对象。
+
+实例：
+
+- 使用yield
+
+```python
+#!/usr/bin/python3
+
+import sys
+
+def fibonacci(n,w=0): # 生成器函数 - 斐波那契
+    a, b, counter = 0, 1, 0
+    while True:
+        if (counter > n): 
+            return
+        yield a
+        a, b = b, a + b
+        print('%d,%d' % (a,b))
+        counter += 1
+f = fibonacci(10,0) # f 是一个迭代器，由生成器返回生成
+
+while True:
+    try:
+        print (next(f), end=" ")
+    except :
+        sys.exit()
+```
+
+输出结果：
+
+```
+0 1,1
+1 1,2
+1 2,3
+2 3,5
+3 5,8
+5 8,13
+8 13,21
+13 21,34
+21 34,55
+34 55,89
+55 89,144
+```
+
+- 不使用yield
+
+```python
+#!/usr/bin/python3
+
+import sys
+
+def fibonacci(n,w=0): # 生成器函数 - 斐波那契
+    a, b, counter = 0, 1, 0
+    while True:
+        if (counter > n): 
+            return
+        #yield a
+        a, b = b, a + b
+        print('%d,%d' % (a,b))
+        counter += 1
+f = fibonacci(10,0) # f 是一个迭代器，由生成器返回生成
+
+while True:
+    try:
+        print (next(f), end=" ")
+    except :
+        sys.exit()
+```
+
+输出结果：
+
+```
+1,1
+1,2
+2,3
+3,5
+5,8
+8,13
+13,21
+21,34
+34,55
+55,89
+89,144
+```
+
+- 生成器总结：
+
+  - 类似断点，可在遇到yield时就返回值，函数暂停，知道下次调用或者迭代终止
+  - 可多加数值，返回的值为元组
+
+# Python数据结构
+
+## 列表
+
+例子：
+
+```python
+>>> a = [66.25, 333, 333, 1, 1234.5]
+>>> print(a.count(333), a.count(66.25), a.count('x'))
+2 1 0
+>>> a.insert(2, -1)
+>>> a.append(333)
+>>> a
+[66.25, 333, -1, 333, 1, 1234.5, 333]
+>>> a.index(333)
+1
+>>> a.remove(333)
+>>> a
+[66.25, -1, 333, 1, 1234.5, 333]
+>>> a.reverse()
+>>> a
+[333, 1234.5, 1, 333, -1, 66.25]
+>>> a.sort()
+>>> a
+[-1, 1, 66.25, 333, 333, 1234.5]
+```
+
+## 元组和序列
+
+元组由若干逗号分隔的值组成，例如：
+
+```python
+>>> t = 12345, 54321, 'hello!'
+>>> t[0]
+12345
+>>> t
+(12345, 54321, 'hello!')
+>>> # Tuples may be nested:
+... u = t, (1, 2, 3, 4, 5)
+>>> u
+((12345, 54321, 'hello!'), (1, 2, 3, 4, 5))
+```
+
+如你所见，元组在输出时总是有括号的，以便于正确表达嵌套结构。在输入时可能有或没有括号， 不过括号通常是必须的（如果元组是更大的表达式的一部分）。
+
+------
+
+## 集合
+
+集合是一个无序不重复元素的集。基本功能包括关系测试和消除重复元素。
+
+可以用大括号({})创建集合。注意：如果要创建一个空集合，你必须用 set() 而不是 {} ；后者创建一个空的字典，下一节我们会介绍这个数据结构。
+
+以下是一个简单的演示：
+
+```python
+>>> basket = {'apple', 'orange', 'apple', 'pear', 'orange', 'banana'}
+>>> print(basket)                      # 删除重复的
+{'orange', 'banana', 'pear', 'apple'}
+>>> 'orange' in basket                 # 检测成员
+True
+>>> 'crabgrass' in basket
+False
+
+>>> # 以下演示了两个集合的操作
+...
+>>> a = set('abracadabra')
+>>> b = set('alacazam')
+>>> a                                  # a 中唯一的字母
+{'a', 'r', 'b', 'c', 'd'}
+>>> a - b                              # 在 a 中的字母，但不在 b 中
+{'r', 'd', 'b'}
+>>> a | b                              # 在 a 或 b 中的字母
+{'a', 'c', 'r', 'd', 'b', 'm', 'z', 'l'}
+>>> a & b                              # 在 a 和 b 中都有的字母
+{'a', 'c'}
+>>> a ^ b                              # 在 a 或 b 中的字母，但不同时在 a 和 b 中
+{'r', 'd', 'b', 'm', 'z', 'l'}
+```
+
+集合也支持推导式：
+
+```
+>>> a = {x for x in 'abracadabra' if x not in 'abc'}
+>>> a
+{'r', 'd'}
+```
+
+------
+
+## 字典
+
+另一个非常有用的 Python 内建数据类型是字典。
+
+序列是以连续的整数为索引，与此不同的是，字典以关键字为索引，关键字可以是任意不可变类型，通常用字符串或数值。
+
+理解字典的最佳方式是把它看做无序的键=>值对集合。在同一个字典之内，关键字必须是互不相同。
+
+一对大括号创建一个空的字典：{}。
+
+这是一个字典运用的简单例子：
+
+```python
+>>> tel = {'jack': 4098, 'sape': 4139}
+>>> tel['guido'] = 4127
+>>> tel
+{'sape': 4139, 'guido': 4127, 'jack': 4098}
+>>> tel['jack']
+4098
+>>> del tel['sape']
+>>> tel['irv'] = 4127
+>>> tel
+{'guido': 4127, 'irv': 4127, 'jack': 4098}
+>>> list(tel.keys())
+['irv', 'guido', 'jack']
+>>> sorted(tel.keys())
+['guido', 'irv', 'jack']
+>>> 'guido' in tel
+True
+>>> 'jack' not in tel
+False
+```
+
+构造函数 dict() 直接从键值对元组列表中构建字典。如果有固定的模式，列表推导式指定特定的键值对：
+
+```python
+>>> dict([('sape', 4139), ('guido', 4127), ('jack', 4098)])
+{'sape': 4139, 'jack': 4098, 'guido': 4127}
 ```
