@@ -1,6 +1,0 @@
-auto fp, begin, end, dexbyte;
-  fp = fopen("/home/amlloc/dump_shell.dex", "wb");
-  begin = 0x761a1000;
-  end = 0x763b6000;
-  for ( dexbyte = begin; dexbyte < end; dexbyte ++ )
-      fputc(Byte(dexbyte), fp);

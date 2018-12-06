@@ -15,7 +15,7 @@ Hexo折腾记录
 - 跑本地服务 localhost:4000
   `hexo server -s`
 - 生成网站静态文件
-  `hexo`
+  `hexo g`
 - 部署生成的文件到github
   `hexo d`
 - 新建页面
