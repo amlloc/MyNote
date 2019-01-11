@@ -228,7 +228,7 @@ sleep 5
 # fastboot -w update image-hammerhead-ktu84p.zip
 #done
 
-#*********** if flash failed, use cmd  above*******#
+#*********** 如果官方刷机方式失败，可以尝试下面的方法 *******#
 fastboot flash recovery recovery.img
 fastboot reboot-bootloader
 sleep 5
