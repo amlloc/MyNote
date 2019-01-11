@@ -428,11 +428,10 @@ exit
 
     ```
     
-    ```
 
     子目录：
 
-    ​```cmake
+    ```cmake
     set(PROJECT_NAME module_demo)
     file(GLOB module_src ./*.cc)
     
