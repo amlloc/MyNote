@@ -4,10 +4,8 @@ date: 2018-09-16 22:37:38
 categories: codenote
 tags: [Android, 填坑记录]
 
-
-typora-copy-images-to: Android开发日常填坑记录
-
 ---
+
 <!--more-->
 
 ## Android刷机脚本
@@ -16,13 +14,13 @@ typora-copy-images-to: Android开发日常填坑记录
 
 
 
-![1546841186489](Android开发日常填坑记录/1546841186489.png)
+![1546841186489]( Android刷机脚本/1546841186489.png)
 
 解决办法及脚本如下：
 
 - 解压`image-hammerhead-ktu84p.zip`文件，得到如下文件
 
-![1546841519946](Android开发日常填坑记录/1546841519946.png)
+![1546841519946](Android刷机脚本/1546841519946.png)
 
 - 刷机脚本
 

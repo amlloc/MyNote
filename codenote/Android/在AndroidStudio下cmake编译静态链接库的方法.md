@@ -10,7 +10,7 @@ typora-copy-images-to: Android开发日常填坑记录
 ---
 
 <!--more-->
-## 在Android Studio下使用cmake编译出静态链接库的方法
+## 在AndroidStudio下使用cmake编译出静态链接库的方法
 
 这个是个巨坑，目前还没有找到真正有效的方法利用cmake的途径获取适用于Android平台下的`.a`文件，但找到一个比较讨巧的方法，是在[stackoverflow](https://stackoverflow.com/questions/52952226/how-to-create-a-static-library-a-file-in-android-studio-3-2-with-cmake)上面看到的一位外国人自问自答。
 
@@ -70,6 +70,6 @@ target_link_libraries(
 
 最后你就可以在`app\.externalNativeBuild\cmake\debug(release)\<abi>\libnative-lib-static.a`获得你想要的`.a`文件了。
 
-![1547193544148](Android开发日常填坑记录/1547193544148.png)
+![1547193544148](在AndroidStudio下使用cmake编译出静态链接库的方法/1547193544148.png)
 
 期待谷歌能对这块改善一下吧，over

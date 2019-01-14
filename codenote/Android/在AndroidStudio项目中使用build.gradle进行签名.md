@@ -1,5 +1,5 @@
 ---
-title: 在Android Studio项目中使用build.gradle进行签名
+title: 在AndroidStudio项目中使用build.gradle进行签名
 date: 2018-09-16 22:37:38
 categories: codenote
 tags: [Android, 填坑记录]
@@ -8,6 +8,7 @@ tags: [Android, 填坑记录]
 typora-copy-images-to: Android开发日常填坑记录
 
 ---
+
 <!--more-->
 
 
@@ -15,7 +16,7 @@ typora-copy-images-to: Android开发日常填坑记录
 
 - 将`.jks`签名文件放在项目模块文件夹下(签名文件可在`Build->Generte signed apk->Create new...`新建`)
 
-![2](Android开发日常填坑记录/2.png)
+![2](在AndroidStudio项目中使用build.gradle进行签名/2.png)
 
 - 在模块下的`build.gradle`添加如下配置
 

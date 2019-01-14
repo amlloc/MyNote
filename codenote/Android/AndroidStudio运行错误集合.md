@@ -1,5 +1,5 @@
 ---
-title: Android Studio运行错误集合
+title: AndroidStudio运行错误集合
 date: 2018-09-16 22:37:38
 categories: codenote
 tags: [Android, 填坑记录, IDE错误集合]
@@ -14,7 +14,7 @@ typora-copy-images-to: Android开发日常填坑记录
 
 报错`Error:Please select Android SDK`
 
-<img src="Android开发日常填坑记录/1.png">
+<img src=" AndroidStudio运行错误集合/1.png">
 
 有两个方法：
 
