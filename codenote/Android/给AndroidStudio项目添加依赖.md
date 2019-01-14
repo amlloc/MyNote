@@ -5,7 +5,7 @@ categories: codenote
 tags: [Android, 填坑记录]
 
 ---
-
+依赖脚本
 <!--more-->
 
 ## 给Android Studio项目添加依赖

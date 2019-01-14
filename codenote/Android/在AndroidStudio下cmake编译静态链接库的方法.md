@@ -5,10 +5,8 @@ categories: codenote
 tags: [Android, 填坑记录, cmake]
 
 
-typora-copy-images-to: Android开发日常填坑记录
-
 ---
-
+cmake静态库编译记录
 <!--more-->
 ## 在AndroidStudio下使用cmake编译出静态链接库的方法
 
@@ -70,6 +68,6 @@ target_link_libraries(
 
 最后你就可以在`app\.externalNativeBuild\cmake\debug(release)\<abi>\libnative-lib-static.a`获得你想要的`.a`文件了。
 
-![1547193544148](在AndroidStudio下使用cmake编译出静态链接库的方法/1547193544148.png)
+![1547193544148](在AndroidStudio下cmake编译静态链接库的方法/1547193544148.png)
 
 期待谷歌能对这块改善一下吧，over

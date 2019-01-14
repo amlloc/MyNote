@@ -4,11 +4,8 @@ date: 2018-09-16 22:37:38
 categories: codenote
 tags: [Android, 填坑记录]
 
-
-typora-copy-images-to: Android开发日常填坑记录
-
 ---
-
+非常常用的系统文件
 <!--more-->
 
 ## /proc/{pid}/maps解读

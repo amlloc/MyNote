@@ -5,7 +5,7 @@ categories: codenote
 tags: [Android, 填坑记录]
 
 ---
-
+当官方脚本失效时使用这里的方法脚本
 <!--more-->
 
 ## Android刷机脚本
