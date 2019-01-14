@@ -4,6 +4,7 @@ date: 2018-09-16 22:36:24
 categories: codenote
 tags: [Android, Reverse, 填坑记录]
 ---
+apk无法被调试时的解决办法
 <!--more-->
 
 ## apk无法调试的问题
