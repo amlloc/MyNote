@@ -11,7 +11,7 @@ AndroidStudio错误记录（持续更新）
 
 报错`Error:Please select Android SDK`
 
-<img src=" AndroidStudio运行错误集合/1.png">
+<img src="AndroidStudio运行错误集合/1.png">
 
 有两个方法：
 
