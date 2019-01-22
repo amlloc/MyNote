@@ -110,3 +110,8 @@ google-chrome <url>
 > Command+Option+X: 导出HTML
 > Ctrl+Alt+C: 拷贝HTML标记至剪贴板
 
+### IDEA安装吐血笔记
+
+- 环境：Ubuntu14.04
+
+不要下载不带SDK的压缩包！不要下载不带SDK的压缩包！不要下载不带SDK的压缩包！重要的事情说三遍！
