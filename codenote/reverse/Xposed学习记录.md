@@ -1,7 +1,9 @@
+---
 title: Xposed记录
 date: 2019-01-15 22:36:24
 categories: codenote
 tags: [Android, Reverse, Xposed]
+---
 
 记录重温高版本Xposed的学习，体验上相比于低版本Xposed，高版本的Xposed构建项目更加方便。在手机上安装Xposed需要root，网上有很多资料，这里不再赘述。
 <!--more-->
