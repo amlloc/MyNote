@@ -1,14 +1,15 @@
 ---
 
 title: inotify监控
-date: 2018-2-15 18:53:12
+date: 2019-2-26 18:53:12
 categories: codenote
 tags: [OS, Linux]
 
 typora-copy-images-to: inotify监控
 ---
-
-### `inotify`的API：
+inotify是Linux为满足某些应用的安全需求或者监控某些文件变化需求等功能而设计出来的接口，这里作一些简单介绍
+<!--more-->
+### inotify的API：
 
 Inotify 提供一个简单的 API，使用最小的文件描述符，并且允许细粒度监控。与 inotify 的通信是通过系统调用实现。可用的函数如下所示：
 
