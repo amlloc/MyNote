@@ -23,6 +23,24 @@ Python学习的点点滴滴
 
 ![1542864845657](python-learn-note/1542864845657.png)
 
+最好的切换方法
+
+```shell
+#调整Python3的优先级，使得3.6优先级较高
+
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.5 1
+
+sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
+
+#更改默认值，python默认为Python2，现在修改为Python3
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python2 100
+
+sudo update-alternatives --install /usr/bin/python python /usr/bin/python3 150
+```
+
+
+
 # Python 变量类型
 
 - Python有五个标准的数据类型：
