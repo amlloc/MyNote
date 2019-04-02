@@ -8,7 +8,60 @@ tags: [Android, 填坑记录, cmake]
 常用cmake命令记录
 
 <!--more-->
-## Android cmake命令总结
+
+## cmake一些窍门
+
+cmake可以指定具体的Generator进行编译，如果没有指定，则会尽可能猜测合理的Generator。一旦确定了Generator，cmake会使用符合的生成器为你的Generator去生成合适的文件。
+
+如`cmake -G "Unix Makefiles" path/to/llvm/source/root`
+
+使用`cmake -help`去查询合适的选项：
+
+```
+The following generators are available on this platform:
+  Unix Makefiles               = Generates standard UNIX makefiles.
+  Ninja                        = Generates build.ninja files.
+  Watcom WMake                 = Generates Watcom WMake makefiles.
+  CodeBlocks - Ninja           = Generates CodeBlocks project files.
+  CodeBlocks - Unix Makefiles  = Generates CodeBlocks project files.
+  CodeLite - Ninja             = Generates CodeLite project files.
+  CodeLite - Unix Makefiles    = Generates CodeLite project files.
+  Sublime Text 2 - Ninja       = Generates Sublime Text 2 project files.
+  Sublime Text 2 - Unix Makefiles
+                               = Generates Sublime Text 2 project files.
+  Kate - Ninja                 = Generates Kate project files.
+  Kate - Unix Makefiles        = Generates Kate project files.
+  Eclipse CDT4 - Ninja         = Generates Eclipse CDT 4.0 project files.
+  Eclipse CDT4 - Unix Makefiles= Generates Eclipse CDT 4.0 project files.	
+```
+
+
+
+## 常用的一些cmake变量
+
+可以直接查询cmake手册或者`cmake --help-variable VARIABLE_NAME`进行查询
+
+- CMAKE_BUILD_TYPE:STRING
+
+  Sets the build type for make-based generators. Possible values are Release, Debug, RelWithDebInfo and MinSizeRel. If you are using an IDE such as Visual Studio, you should use the IDE settings to set the build type. Be aware that Release and RelWithDebInfo use different optimization levels on most platforms.
+
+- CMAKE_INSTALL_PREFIX:PATH
+
+  Path where LLVM will be installed if “make install” is invoked or the “install” target is built.
+
+- LLVM_LIBDIR_SUFFIX:STRING
+
+  Extra suffix to append to the directory where libraries are to be installed. On a 64-bit architecture, one could use -DLLVM_LIBDIR_SUFFIX=64 to install libraries to /usr/lib64.
+
+- CMAKE_C_FLAGS:STRING
+
+  Extra flags to use when compiling C source files.
+
+- CMAKE_CXX_FLAGS:STRING
+
+  Extra flags to use when compiling C++ source files.
+
+## cmake命令总结
 
 指令总结方面可以直接查看这个官方链接：https://cmake.org/cmake/help/v3.3/manual/cmake-commands.7.html
 
