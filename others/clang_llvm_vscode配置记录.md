@@ -45,5 +45,3 @@ clang版本：7.0.1
 
 - `clang --version`
 
-  ![1554081885871](C:/Users/ziweiliu/AppData/Roaming/Typora/typora-user-images/1554081885871.png)
-
