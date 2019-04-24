@@ -10,7 +10,7 @@ linker是Android系统动态库so的加载器和链接器，也是Android脱壳�
 <!--more-->
 
 **系统** :Android4.4-r1
-**linker源码的位置** : Android/bionic/linker
+**linker源码的位置** : `Android/bionic/linker`
 
 ## 0x00 加载与启动so 
 1、Java层中声明加载某个so文件以共享，则可在Java层声明代码：

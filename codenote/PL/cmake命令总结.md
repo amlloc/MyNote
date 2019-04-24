@@ -47,7 +47,11 @@ The following generators are available on this platform:
 
 - CMAKE_INSTALL_PREFIX:PATH
 
-  Path where LLVM will be installed if “make install” is invoked or the “install” target is built.
+  Install directory used by ``install()``.
+
+  If ``make install`` is invoked or ``INSTALL`` is built, this directory is
+  prepended onto all install directories.  This variable defaults to
+  ``/usr/local`` on UNIX and ``c:/Program Files/${PROJECT_NAME}`` on Windows.
 
 - LLVM_LIBDIR_SUFFIX:STRING
 
