@@ -38,6 +38,8 @@ gdb dump及调试记录，这个工具很少用，但有时又得用一下，所
 
 启动gdbserver附加到目标进程,其中remote表示远程连接端口
 
+`./gdbserver remote:12345 --attach {pid}`
+
 ![1556095166563](gdb使用记录/1556095166563.png)
 
 adb端口映射：

@@ -193,3 +193,26 @@ tags: [git, 填坑记录]
 - 恢复指定的stash
 
   `git stash apply stash@{0}`
+
+## repo
+
+- ` repo forall -c 'commitID=`git log --before "2019-05-08 09:18" -1 --pretty=format:"%H"`; git reset --hard $commitID'`
+
+  参数说明：
+  forall　　操作分支中的所有仓库
+  -c　　只操作当前分支
+  --before　　早于指定时间点的提交记录
+  -1　　只显示最近的1条记录（注意这是数字 1 ，如果要显示 2 条就写 2，以此类推）
+  "2017-03-17 07:00"　　希望回退到的日期（时间点）
+  --pretty　　以指定格式显示提交记录
+  %H　　提交记录的hash值，即commit id（其它格式及更详细的信息可以使用命令git log --help打印帮助信息并查看“PRETTY FORMATS”小节）
+
+  命令含义：
+   这条repo命令的实质就是在当前分支的每个仓库下执行git log命令，找出该仓库下符合时间条件的第一个提交记录，然后对该仓库执行git reset --hard操作。就这么简单。
+
+
+
+  注意事项： 命令里的单引号'以及`要注意区分！ 前后两个是单引号' 当中两个是`
+
+   举例： repo forall -c 'commitID=`git log --before "2017-04-15 07:00" -1 --pretty=format:"%H"`; git reset --hard $commitID'
+
