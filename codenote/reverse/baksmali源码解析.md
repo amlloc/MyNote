@@ -2,7 +2,7 @@
 title: baksmali源码解析
 date: 2019-04-21 17:37:55
 categories: codenote
-tags: Android, smali, reverse
+tags: [Android, smali, reverse]
 ---
 
 bakesmali源码编译及其解析笔记
