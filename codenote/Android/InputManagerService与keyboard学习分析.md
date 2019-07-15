@@ -1,6 +1,6 @@
 ---
 
-![1557311034415](InputManagerService与keyboard学习分析/1557311034415.png)title: InputManagerService与keyboard学习分析
+title: InputManagerService与keyboard学习分析
 date: 2019-05-08 10:14:38
 categories: codenote
 tags: [Android, framworks, Service, keyboard]
