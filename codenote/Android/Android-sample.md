@@ -169,3 +169,6 @@ dumpBacktraceIndex(outBuf, stackBuf, captureBacktrace(stackBuf, maxStackDeep));
 LOGE(" %s\n", outBuf);
 ```
 
+## 启动模拟器
+
+` ./emulator -avd Nexus_6_API_23_armv7 -netspeed full -netdelay none`

@@ -15,7 +15,7 @@ clang版本：7.0.1
 
 安装方式：源码编译安装
 
-## clang  + llvm安装
+## clang + llvm安装
 
 - 在[clang下载链接](http://releases.llvm.org/download.html)下载对应的clang源码版本和llvm版本
 
