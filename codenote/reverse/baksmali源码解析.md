@@ -50,6 +50,121 @@ bakesmali源码编译及其解析笔记
 
 - 编译成功
 
+## baksmali代码框架
+
+apktool工具实际上就是利用baksmali和smali文件进行dex文件的转换的
+
+其中baksmali的作用是将dex文件转换成smali文件，而smali项目是将smali文件重新编译回dex文件
+
+命令如下：
+
+`java -jar baksmali.jar classes.dex -o smalidir`
+
+`java -jar smali.jar  ` smalidir -o classes.dex
+
+下图就可看到smali和baksmali项目的文件夹
+
+![1555949931897](baksmali源码解析/1555949931897.png)
+
+- baksmali
+
+  实现dex2smali，重点分析
+
+- deodexerant
+
+  一个C文件，主要是查看`libdvm`中的`dvmGetInlineOpsTable`这个导出表，这里不作解析，可以使用ndk工具进行编译具体源码如下：
+
+  ```c
+  /*
+   * Copyright 2011, Google Inc.
+   * All rights reserved.
+   */
+  
+  #include <stdio.h>
+  #include <dlfcn.h>
+  
+  typedef struct InlineOperation {
+      void *          func;
+      const char*     classDescriptor;
+      const char*     methodName;
+      const char*     methodSignature;
+  } InlineOperation;
+  
+  typedef const InlineOperation* (*dvmGetInlineOpsTablePtr)();
+  typedef int (*dvmGetInlineOpsTableLengthPtr)();
+  
+  void main(int argc, char **argv) {
+  	int i;
+  
+  	void *libdvm = dlopen("libdvm.so", RTLD_LAZY);
+  
+  	if (libdvm == NULL) {
+  		printf("Failed to load libdvm: %s\n", dlerror());
+  		return;
+  	}
+  
+  	dvmGetInlineOpsTablePtr dvmGetInlineOpsTable = dlsym(libdvm, "dvmGetInlineOpsTable");
+  
+  	if (dvmGetInlineOpsTable == NULL) {
+  		// clear the error, and retry with the c++ mangled name
+  		dlerror();
+  		dvmGetInlineOpsTable = dlsym(libdvm, "_Z20dvmGetInlineOpsTablev");
+  	}
+  
+  	if (dvmGetInlineOpsTable == NULL) {
+  		printf("Failed to load dvmGetInlineOpsTable: %s\n", dlerror());
+  		dlclose(libdvm);
+  		return;
+  	}
+  
+  	dvmGetInlineOpsTableLengthPtr dvmGetInlineOpsTableLength = dlsym(libdvm, "dvmGetInlineOpsTableLength");
+  
+  	if (dvmGetInlineOpsTableLength == NULL) {
+  		// clear the error, and retry with the c++ mangled name
+  		dlerror();
+  		dvmGetInlineOpsTableLength = dlsym(libdvm, "_Z26dvmGetInlineOpsTableLengthv");
+  	}
+  
+  	if (dvmGetInlineOpsTableLength == NULL) {
+  		printf("Failed to load dvmGetInlineOpsTableLength: %s\n", dlerror());
+  		dlclose(libdvm);
+  		return;
+  	}
+  
+  	const InlineOperation *inlineTable = dvmGetInlineOpsTable();
+  	int length = dvmGetInlineOpsTableLength();
+  
+  	for (i=0; i<length; i++) {
+  		InlineOperation *item = &inlineTable[i];
+  
+  		printf("%s->%s%s\n", item->classDescriptor, item->methodName, item->methodSignature);
+  	}
+  
+  	dlclose(libdvm);
+  	return;
+  }
+  ```
+
+- dexlib2
+
+  dex和smali真正起到关键作用的项目，不管是smali还是baksmali都需要用到这个库中的方法和接口，才能解析和生成相应的smali文件
+
+- example
+
+  具备代表性质的smali文件
+
+- smali
+
+  将smali文件转成dex文件的项目
+
+- smali-integration-tests
+
+  整合测试的一个文件夹，里面也是一些smali文件，跟源码无关
+
+- util
+
+  辅助工具类
+
 参考文献:
 
 https://blog.51cto.com/sunzeduo/1540085
