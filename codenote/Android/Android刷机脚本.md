@@ -77,3 +77,10 @@ exit
 
 #*********** done *******
 ```
+
+## Android 8.0 user版本降级到Android 7.1.1 userdebuger版本
+
+1. 先刷官方包，尤其不要忘记刷vendor.img
+2. 刷完后再说编译出来的几个img即可；
+
+具体原理不明，控制变量法判断编译出来的img没有vendor.img，而高版本vendor 不对低版本兼容
