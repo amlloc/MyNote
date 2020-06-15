@@ -289,4 +289,3 @@ mInstrumentation.callActivityOnCreate(activity, r.state)，此后Activity的onCr
         postPerformCreate(activity);
     }
 ```
-
