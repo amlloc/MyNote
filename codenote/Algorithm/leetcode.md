@@ -212,22 +212,17 @@ LeetCode进阶之路
           
           int tmp = 0;
           for(int i = 0; i < nums.size(); i++){
-              
               tmp = tmp ^ nums[i];
-              
-          }
-          
-          return tmp;
-          
-          
+          }     
+          return tmp; 
       }
   };
   ```
-
+  
   #### 两个数组的交集 II
-
+  
   给定两个数组，编写一个函数来计算它们的交集。
-
+  
 - **示例 1:**
 
   ```
@@ -294,3 +289,250 @@ LeetCode进阶之路
       }
   };
   ```
+
+## 开始
+
+### 1. 两数之和
+
+给定一个整数数组 nums 和一个目标值 target，请你在该数组中找出和为目标值的那 两个 整数，并返回他们的数组下标。
+
+你可以假设每种输入只会对应一个答案。但是，数组中同一个元素不能使用两遍。
+
+示例:
+
+```
+给定 nums = [2, 7, 11, 15], target = 9
+因为 nums[0] + nums[1] = 2 + 7 = 9
+所以返回 [0, 1]
+```
+
+#### 两遍哈希表法
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> a;//存储数组元素和对应下标
+        vector<int> b(2, -1);//存放结果
+        
+        //将元素插入到哈希表中
+        for(int i = 0; i < nums.size(); i++){
+            a.insert(map<int, int>::value_type(nums[i], i));
+        }
+        
+        for(int i = 0; i < nums.size(); i++){
+            //判断是否找到目标元素，且目标元素不能是他自己本身
+            if(a.count(target - nums[i]) > 0 && (a[target - nums[i]] != i)){
+                b[0] = i;
+                b[1] = a[target - nums[i]];
+                break;
+            } 
+        }
+        return b;
+    }
+};
+```
+
+#### 一遍哈希表
+
+```c++
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        map<int, int> a;
+        vector<int> b(2, -1);
+        
+        for(int i = 0; i < nums.size(); i++){
+            if(a.count(target - nums[i]) > 0){
+                b[0] = i;
+                b[1] = a[target - nums[i]];
+                break;
+            } 
+            a[nums[i]] = i;//边插边判断是否找到目标元素，因为是先判断再进行插入的，所以后续不存在找到自己本身的情况，不需要判断目标元素不是自己
+        }
+        return b;
+    }
+};
+
+```
+
+
+
+### 3. 无重复字符的最长子串
+
+给定一个字符串，请你找出其中不含有重复字符的 最长子串 的长度。
+
+#### 第一种解法 滑动窗口解法
+
+时间复杂度：O(n^2)
+
+空间复杂度：O(1)
+
+```c++
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.size() == 0) return 0;
+        unordered_set<char> lookup;
+        int maxStr = 0;
+        int left = 0;
+        
+        for(int i = 0; i < s.size(); i++){
+            while(lookup.find(s[i]) != lookup.end()){//窗口向右边扩张时，发现有相同的字符，将窗口左边缩窄，直到不存在重复字符。
+                lookup.erase(s[left]);
+                left++;
+            }
+            
+            maxStr = max(maxStr, i - left + 1);//记录最长长度
+            lookup.insert(s[i]);//窗口右侧扩张
+            
+        }
+        return maxStr;
+    }
+};
+```
+
+#### 第二种解法 hashmap优化
+
+时间复杂度：O(n^2)
+
+空间复杂度：O(n^2)
+
+```C++
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        int start(0), end(0), length(0), result(0);
+        int sSize = int(s.size());
+        unordered_map<char, int> hash;
+        while(end < sSize){
+            char tmp = s[end];
+            if(hash.find(tmp) != hash.end() && hash[tmp] >= start){
+                start = hash[tmp] + 1;//直接从hashmap中找到左侧需要缩窄到达的位置
+                length = end - start;
+            }
+            hash[tmp] = end;
+            length++;
+            end++;
+            result = max(result, length);
+        }
+        return result;
+    }
+};
+```
+
+利用hashmap记录的字符位置信息，节约缩窄窗口左侧的时间，达到以空间换时间的目的。
+
+#### 5. 最长回文字符串
+
+使用动态规划的方法
+
+![image-20200923235712585](leetcode.assets/image-20200923235712585.png)
+
+**时间复杂度：O(n^2)**
+
+**空间复杂度：O(n^2)**
+
+```c++
+
+class Solution {
+public:
+    string longestPalindrome(string s) {
+        int length = s.size();
+        vector<vector<bool>> dp(length, vector<bool>(length));;
+        string ans = "";
+        int maxLength = 1;
+        int start = 0;
+        for(int i = 0; i < length; i++){
+            dp[i][i] = true;
+        }
+        
+        for(int j = 1; j < length; j++){
+            for(int i = 0; i < j; i++){
+                if(s[i] !=s[j]){ //头尾不相等时，则肯定不是回文字符串
+                    dp[i][j] = false;
+                }else{
+                    if(j - i < 3){ 
+                        dp[i][j] = true;//头尾相等，且长度小于等于3的，则为回文字符串
+                    }else{
+                        dp[i][j] = dp[i+1][j-1];//头尾相等，长度大于3时，切除头尾仍然为回文字符串时，则这个字符串也是回文字符串
+                    }
+                }
+                if(dp[i][j] && ((j - i + 1) > maxLength)){
+                    maxLength = j - i + 1;
+                    start = i;
+                    
+                }
+            }
+        }
+        ans = s.substr(start, maxLength);
+        return ans;
+    }
+        
+};
+```
+
+### 6. Z 字形变换
+
+将一个给定字符串根据给定的行数，以从上往下、从左到右进行 Z 字形排列。
+
+比如输入字符串为 `"LEETCODEISHIRING"` 行数为 3 时，排列如下：
+
+```
+L   C   I   R
+E T O E S I I G
+E   D   H   N
+```
+
+之后，你的输出需要从左往右逐行读取，产生出一个新的字符串，比如：`"LCIRETOESIIGEDHN"`。
+
+请你实现这个将字符串进行指定行数变换的函数：
+
+```c++
+string convert(string s, int numRows);
+```
+
+**示例 1:**
+
+```
+输入: s = "LEETCODEISHIRING", numRows = 3
+输出: "LCIRETOESIIGEDHN"
+```
+
+#### 题解
+
+1. 初始化字符串数组用于记录字符排列顺序
+2. 自上往下，再自下往上对字符进行逐个排列
+3. 利用flag判断排列方向，初始化为-1
+4. 当到达灵界点，即最上层和最下层时，改变排列方向，flag：-1 —> 1—> -1
+5. 最后遍历所有字符串，并进行拼接
+
+```c++
+class Solution {
+public:
+    string convert(string s, int numRows) {
+        if(numRows == 1) return s;
+    
+        vector<string> rows(min(numRows, (int)s.size()));
+
+        int curRow = 0;
+        int goDown = -1; //记录排列方向为向上或向下
+
+        for(char c : s){
+            rows[curRow] += c;
+            if(curRow == 0 || curRow == numRows -1)  goDown = -goDown; //到达临界点时，改变排列方向
+
+            curRow +=goDown;//依次向上或者向下排列
+        }
+
+        string ret;
+        //遍历所有字符串
+        for(string row : rows){
+            ret += row;
+        }
+
+        return ret;
+    }
+};
+```
+

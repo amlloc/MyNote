@@ -45,3 +45,8 @@ adb的命令总结
     - 可以同时设置多个过滤器
 
       `adb logcat WifiHW:D dalvikvm:I *:S`
+      
+    - 输出指定包名的日志
+    ```shell
+    adb logcat | grep -F "`adb shell ps | grep com.amlloc.test | cut -c10-15`"
+    ```
