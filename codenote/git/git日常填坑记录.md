@@ -140,7 +140,7 @@ tags: [git, 填坑记录]
 
 - 查看本地+远程分支
 
-  `git branch -va`
+  `git branch -a`
 
 ### .gitignore
 
@@ -216,3 +216,30 @@ tags: [git, 填坑记录]
 
    举例： repo forall -c 'commitID=`git log --before "2017-04-15 07:00" -1 --pretty=format:"%H"`; git reset --hard $commitID'
 
+## 新建空分支
+
+- **使用 git checkout的--orphan参数:**
+
+  `git checkout --orphan 2.0.2`
+
+> > 该命令会生成一个叫2.0.2的分支，该分支会包含父分支的所有文件。但新的分支不会指向任何以前的提交，就是它没有历史，如果你提交当前内容，那么这次提交就是这个分支的首次提交。
+
+- **删除所有文件：**
+
+  `git rm -rf .`
+
+> >用git命令把当前内容全部删除
+
+- **提交文件**
+
+  ```shell
+  echo '# new branch' >> README.md
+  
+  git add README.md
+  
+  git commit -m 'new branch'
+  ```
+
+- **推送代码**
+
+​       `git push origin 2.0.2`
