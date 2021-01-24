@@ -8,7 +8,7 @@ tags: Android
 Android 应用启动流程梳理（基于Android7.1.1）
 <!--more-->
 
-![aaa](Android应用启动流程/aaa.png)
+![Android启动流程](Android应用启动流程/Android启动流程.png)
 
 ### 涉及的几个重要类
 
