@@ -12,7 +12,7 @@ tags: [Compilers]
 
 ## 9.2.1
 
-For the ow graph of Fig. 9.10 (see the exercises for Section 9.1), compute 
+For the flow graph of Fig. 9.10 (see the exercises for Section 9.1), compute 
 
 a) The gen and kil l sets for each block. 
 
